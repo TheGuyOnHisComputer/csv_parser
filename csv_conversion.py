@@ -12,6 +12,16 @@ class contact:
         def __init__(self, row):
                 self.row = row
                 self.name = find_att(row, 0)
+                self.move_in = find_att(row, 2)
+                self.add_one = find_att(row, 3)
+                self.add_two = find_att(row, 4)
+                self.add_three = find_att(row, 5)
+                self.city = find_att(row, 6)
+                self.postcode = find_att(row, 7)
+                self.fname = find_att(row, 11)
+                self.lname = find_att(row, 12)
+                self.phone = find_att(row, 13)
+                self.email = find_att(row, 14)
 
 def find_att(row, attr_number):
         count = 0
@@ -32,17 +42,20 @@ def create_contacts():
 
 def main():
         arr = parse_csv("test.csv")
-        ies_output = []
         companies = {}
+        ies_output = []
         for i in range(len(arr)):
                 name = find_att(arr[i][0], 0)
-                print(name)
                 if name != None:
-                        companies[name] = arr[i]
+                        companies[name] = arr[i][0]
         ies_comps = create_contacts()
         for i in companies.keys():
                 if i in ies_comps:
                         ies_output.append(companies[i])
-        print(companies)
+        test_name = "Sewell & Gardner"
+        print(companies[test_name])
+        print(find_att(companies[test_name], 6))
+        ex = contact(companies[test_name])
+        print(ex.__dict__)
 
 main()
