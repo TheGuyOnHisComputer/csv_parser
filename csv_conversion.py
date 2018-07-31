@@ -40,10 +40,15 @@ def create_contacts():
         company_names = ["Shefflets", "Northwood Northampton","Sewell & Gardner", "Location Location"]
         return company_names
 
+def write_csv():
+        file = open("output.csv", "wb")
+        w = csv.writer(file, dialect='excel')
+        s.
+
 def main():
         arr = parse_csv("test.csv")
         companies = {}
-        ies_output = []
+        ies_in_csv = []
         for i in range(len(arr)):
                 name = find_att(arr[i][0], 0)
                 if name != None:
@@ -51,11 +56,11 @@ def main():
         ies_comps = create_contacts()
         for i in companies.keys():
                 if i in ies_comps:
-                        ies_output.append(companies[i])
+                        ies_in_csv.append(contact(companies[i]))
         test_name = "Sewell & Gardner"
-        print(companies[test_name])
-        print(find_att(companies[test_name], 6))
         ex = contact(companies[test_name])
         print(ex.__dict__)
+        print("___________________")
+        print(ies_in_csv)
 
 main()
